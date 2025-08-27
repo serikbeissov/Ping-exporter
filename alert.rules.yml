@@ -1,0 +1,11 @@
+groups:
+- name: camera-alerts
+  rules:
+  - alert: CameraDown
+    expr: ping_up{target="192.168.1.10"} == 0  # 0 = камера недоступна
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Камера {{ $labels.target }} недоступна!"
+      description: "Камера {{ $labels.target }} не отвечает на ping более 5 минут."

@@ -1,0 +1,2074 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "A simple working dashboard for https://github.com/czerwonk/ping_exporter",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "uid": "$Datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "custom.hidden",
+                "value": true
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "target"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": false,
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)"
+                    },
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)",
+                      "value": -0.0002
+                    },
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 1,
+                        "text": "UP"
+                      },
+                      "1": {
+                        "index": 0,
+                        "text": "DOWN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ipv4"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "IPv4"
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)"
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "target"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Name"
+              },
+              {
+                "id": "unit",
+                "value": "string"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "custom.align",
+                "value": "left"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "10.1.116.1": {
+                        "index": 0,
+                        "text": "Gateway"
+                      },
+
+                      "10.1.116.175": {
+                        "index": 1,
+                        "text": "O-6F-CD.2"
+                      },
+                      "10.1.116.38": {
+                        "index": 2,
+                        "text": "O-B2-EC.2"
+                      },
+                      "10.1.117.81": {
+                        "index": 3,
+                        "text": "O-B1-CD.12"
+                      },
+                      "10.1.116.114": {
+                        "index": 4,
+                        "text": "O-1F-EC.8"
+                      },
+                      "10.1.116.82": {
+                        "index": 5,
+                        "text": "O-1F-CD.8"
+                      },
+                      "10.1.116.80": {
+                        "index": 6,
+                        "text": "O-1F-CD.6"
+                      },
+                      "10.1.116.172": {
+                        "index": 7,
+                        "text": "O-6F-CD.5"
+                      },
+                      "10.1.116.106": {
+                        "index": 8,
+                        "text": "O-1F-CD.14"
+                      },
+                      "10.1.116.180": {
+                        "index": 9,
+                        "text": "O-7F-CD.1"
+                      },
+                      "10.1.117.94": {
+                        "index": 10,
+                        "text": "O-1F-CD.20"
+                      },
+                      "10.1.116.77": {
+                        "index": 11,
+                        "text": "O-1F-CD.3"
+                      },
+                      "10.1.117.78": {
+                        "index": 12,
+                        "text": "O-20F-CD.6"
+                      },
+                      "10.1.116.40": {
+                        "index": 13,
+                        "text": "O-B2-EC.4"
+                      },
+                      "10.1.116.39": {
+                        "index": 14,
+                        "text": "O-B2-EC.3"
+                      },
+                      "10.1.116.181": {
+                        "index": 15,
+                        "text": "O-7F-CD.2"
+                      },
+                      "10.1.116.168": {
+                        "index": 16,
+                        "text": "O-5F-CD.1"
+                      },
+                      "10.1.116.43": {
+                        "index": 17,
+                        "text": "O-1F-EC.12.1"
+                      },
+                      "10.1.116.70": {
+                        "index": 18,
+                        "text": "O-B1-EC.12"
+                      },
+                      "10.1.116.169": {
+                        "index": 19,
+                        "text": "O-5F-CD.2"
+                      },
+                      "10.1.116.76": {
+                        "index": 20,
+                        "text": "O-1F-CD.2"
+                      },
+                      "10.1.116.37": {
+                        "index": 21,
+                        "text": "O-B2-EC.1"
+                      },
+                      "10.1.116.34": {
+                        "index": 22,
+                        "text": "O-B2-CD.5"
+                      },
+                      "10.1.116.81": {
+                        "index": 23,
+                        "text": "O-1F-CD.7"
+                      },
+                      "10.1.116.78": {
+                        "index": 24,
+                        "text": "O-1F-CD.4"
+                      },
+                      "10.1.116.179": {
+                        "index": 25,
+                        "text": "O-6F-CD.6"
+                      },
+                      "10.1.116.174": {
+                        "index": 26,
+                        "text": "O-6F-CD.1"
+                      },
+                      "10.1.116.73": {
+                        "index": 27,
+                        "text": "O-B1-EC.15"
+                      },
+                      "10.1.116.72": {
+                        "index": 28,
+                        "text": "O-B1-EC.14"
+                      },
+                      "10.1.116.184": {
+                        "index": 29,
+                        "text": "O-7F-CD.5"
+                      },
+                      "10.1.116.71": {
+                        "index": 30,
+                        "text": "O-B1-EC.13"
+                      },
+                      "10.1.116.173": {
+                        "index": 31,
+                        "text": "O-2F-CD.11"
+                      },
+                      "10.1.116.185": {
+                        "index": 32,
+                        "text": "O-7F-CD.6"
+                      },
+                      "10.1.116.41": {
+                        "index": 33,
+                        "text": "O-B2-EC.5"
+                      },
+                      "10.1.116.187": {
+                        "index": 34,
+                        "text": "O-8F-CD.2"
+                      },
+                      "10.1.116.159": {
+                        "index": 35,
+                        "text": "P-4F.R-EC.4"
+                      },
+                      "10.1.116.86": {
+                        "index": 36,
+                        "text": "O-11F-CD.8"
+                      },
+                      "10.1.117.230": {
+                        "index": 37,
+                        "text": "H-B1-EC.1"
+                      },
+                      "10.1.116.193": {
+                        "index": 38,
+                        "text": "O-9F-CD.2"
+                      },
+                      "10.1.116.158": {
+                        "index": 39,
+                        "text": "P-4F.R-EC.3"
+                      },
+                      "10.1.117.14": {
+                        "index": 40,
+                        "text": "O-21F-CD.4"
+                      },
+                      "10.1.117.66": {
+                        "index": 41,
+                        "text": "O-30F-EC.3"
+                      },
+                      "10.1.117.236": {
+                        "index": 42,
+                        "text": "H-B1-EC.10"
+                      },
+                      "10.1.117.231": {
+                        "index": 43,
+                        "text": "H-B1-EC.2"
+                      },
+                      "10.1.117.65": {
+                        "index": 44,
+                        "text": "O-30F-EC.2"
+                      },
+                      "10.1.116.209": {
+                        "index": 45,
+                        "text": "O-11F-CD.6"
+                      },
+                      "10.1.116.226": {
+                        "index": 46,
+                        "text": "O-14F-CD.5"
+                      },
+                      "10.1.116.143": {
+                        "index": 47,
+                        "text": "O-3F-CD.3"
+                      },
+                      "10.1.116.208": {
+                        "index": 48,
+                        "text": "O-11F-CD.5"
+                      },
+                      "10.1.117.238": {
+                        "index": 49,
+                        "text": "H-B1-EC.13"
+                      },
+                      "10.1.116.197": {
+                        "index": 50,
+                        "text": "O-9F-CD.6"
+                      },
+                      "10.1.117.20": {
+                        "index": 51,
+                        "text": "O-22F-CD.4"
+                      },
+                      "10.1.117.234": {
+                        "index": 52,
+                        "text": "H-B1-EC.8"
+                      },
+                      "10.1.116.210": {
+                        "index": 53,
+                        "text": "O-12F-CD.1"
+                      },
+                      "10.1.116.60": {
+                        "index": 54,
+                        "text": "O-B1-EC.2"
+                      },
+                      "10.1.116.186": {
+                        "index": 55,
+                        "text": "O-8F-CD.1"
+                      },
+                      "10.1.116.61": {
+                        "index": 56,
+                        "text": "O-B1-EC.3"
+                      },
+                      "10.1.117.237": {
+                        "index": 57,
+                        "text": "H-B1-EC.11"
+                      },
+                      "10.1.116.211": {
+                        "index": 58,
+                        "text": "O-12F-CD.2"
+                      },
+                      "10.1.116.87": {
+                        "index": 59,
+                        "text": "O-1F-CD.13"
+                      },
+                      "10.1.116.192": {
+                        "index": 60,
+                        "text": "O-9F-CD.1"
+                      },
+                      "10.1.116.254": {
+                        "index": 61,
+                        "text": "O-19F-CD.4"
+                      },
+                      "10.1.116.92": {
+                        "index": 62,
+                        "text": "O-1F-CD.18"
+                      },
+                      "10.1.117.32": {
+                        "index": 63,
+                        "text": "O-24F-CD.4"
+                      },
+                      "10.1.117.44": {
+                        "index": 64,
+                        "text": "O-26F-CD.4"
+                      },
+                      "10.1.117.233": {
+                        "index": 65,
+                        "text": "H-B1-EC.6"
+                      },
+                      "10.1.117.235": {
+                        "index": 66,
+                        "text": "H-B1-EC.9"
+                      },
+                      "10.1.117.64": {
+                        "index": 67,
+                        "text": "O-30F-EC.1"
+                      },
+                      "10.1.117.232": {
+                        "index": 68,
+                        "text": "H-B1-EC.5"
+                      },
+                      "10.1.117.8": {
+                        "index": 69,
+                        "text": "O-20F-CD.4"
+                      },
+                      "10.1.116.142": {
+                        "index": 70,
+                        "text": "O-3F-CD.4"
+                      },
+                      "10.1.117.26": {
+                        "index": 71,
+                        "text": "O-23F-CD.4"
+                      },
+                      "10.1.117.43": {
+                        "index": 72,
+                        "text": "O-26F-CD.3"
+                      },
+                      "10.1.117.28": {
+                        "index": 73,
+                        "text": "O-23F-CD.6"
+                      },
+                      "10.1.117.86": {
+                        "index": 74,
+                        "text": "H-1F-EC.19"
+                      },
+                      "10.1.117.23": {
+                        "index": 75,
+                        "text": "O-23F-CD.1"
+                      },
+                      "10.1.117.21": {
+                        "index": 76,
+                        "text": "O-22F-CD.5"
+                      },
+                      "10.1.116.116": {
+                        "index": 77,
+                        "text": "O-1F-EC.10"
+                      },
+                      "10.1.117.12": {
+                        "index": 78,
+                        "text": "O-21F-CD.2"
+                      },
+                      "10.1.117.11": {
+                        "index": 79,
+                        "text": "O-21F-CD.1"
+                      },
+                      "10.1.117.27": {
+                        "index": 80,
+                        "text": "O-23F-CD.5"
+                      },
+                      "10.1.117.88": {
+                        "index": 81,
+                        "text": "O-23F-CD.7"
+                      },
+                      "10.1.116.115": {
+                        "index": 82,
+                        "text": "O-1F-EC.9"
+                      },
+                      "10.1.117.95": {
+                        "index": 83,
+                        "text": "H-1F-EC.2"
+                      },
+                      "10.1.117.16": {
+                        "index": 84,
+                        "text": "O-21F-CD.6"
+                      },
+                      "10.1.117.89": {
+                        "index": 85,
+                        "text": "O-23F-CD.8"
+                      },
+                      "10.1.117.18": {
+                        "index": 86,
+                        "text": "O-22F-CD.2"
+                      },
+                      "10.1.117.15": {
+                        "index": 87,
+                        "text": "O-21F-CD.5"
+                      },
+                      "10.1.117.17": {
+                        "index": 88,
+                        "text": "O-22F-CD.1"
+                      },
+                      "10.1.117.53": {
+                        "index": 89,
+                        "text": "O-21F-CD.11"
+                      },
+                      "10.1.116.119": {
+                        "index": 90,
+                        "text": "O-1F-EC.13"
+                      },
+                      "10.1.116.117": {
+                        "index": 91,
+                        "text": "O-1F-EC.11"
+                      },
+                      "10.1.116.79": {
+                        "index": 92,
+                        "text": "O-1F-CD.5"
+                      },
+                      "10.1.116.95": {
+                        "index": 93,
+                        "text": "O-11F-CD.9"
+                      },
+                      "10.1.116.30": {
+                        "index": 94,
+                        "text": "O-B2-CD.1"
+                      },
+                      "10.1.116.36": {
+                        "index": 95,
+                        "text": "O-B2-CD.7"
+                      },
+                      "10.1.117.92": {
+                        "index": 96,
+                        "text": "O-23F-CD.11"
+                      },
+                      "10.1.116.32": {
+                        "index": 97,
+                        "text": "O-B2-CD.3"
+                      },
+                      "10.1.116.200": {
+                        "index": 98,
+                        "text": "O-10F-CD.3"
+                      },
+                      "10.1.117.96": {
+                        "index": 99,
+                        "text": "O-11F-CD.12"
+                      },
+                      "10.1.116.97": {
+                        "index": 100,
+                        "text": "O-11F-CD.11"
+                      },
+                      "10.1.117.24": {
+                        "index": 101,
+                        "text": "O-23F-CD.2"
+                      },
+                      "10.1.117.22": {
+                        "index": 102,
+                        "text": "O-22F-CD.6"
+                      },
+                      "10.1.116.128": {
+                        "index": 103,
+                        "text": "O-2F-CD.9"
+                      },
+                      "10.1.116.96": {
+                        "index": 104,
+                        "text": "O-11F-CD.10"
+                      },
+                      "10.1.116.112": {
+                        "index": 105,
+                        "text": "O-1F-EC.6"
+                      },
+                      "10.1.116.83": {
+                        "index": 106,
+                        "text": "O-1F-CD.9"
+                      },
+                      "10.1.116.177": {
+                        "index": 107,
+                        "text": "O-6F-CD.4"
+                      },
+                      "10.1.116.214": {
+                        "index": 108,
+                        "text": "O-12F-CD.5"
+                      },
+                      "10.1.116.189": {
+                        "index": 109,
+                        "text": "O-7F-CD.4"
+                      },
+                      "10.1.116.229": {
+                        "index": 110,
+                        "text": "O-15F-CD.3"
+                      },
+                      "10.1.116.222": {
+                        "index": 111,
+                        "text": "O-14F-CD.1"
+                      },
+                      "10.1.116.194": {
+                        "index": 112,
+                        "text": "O-9F-CD.3"
+                      },
+                      "10.1.116.219": {
+                        "index": 113,
+                        "text": "O-13F-CD.4"
+                      },
+                      "10.1.116.195": {
+                        "index": 114,
+                        "text": "O-9F-CD.4"
+                      },
+                      "10.1.116.122": {
+                        "index": 115,
+                        "text": "O-2F-CD.3"
+                      },
+                      "10.1.116.223": {
+                        "index": 116,
+                        "text": "O-14F-CD.2"
+                      },
+                      "10.1.116.171": {
+                        "index": 117,
+                        "text": "O-5F-CD.4"
+                      },
+                      "10.1.116.123": {
+                        "index": 118,
+                        "text": "O-2F-CD.4"
+                      },
+                      "10.1.116.203": {
+                        "index": 119,
+                        "text": "O-10F-CD.6"
+                      },
+                      "10.1.116.84": {
+                        "index": 120,
+                        "text": "O-1F-CD.10"
+                      },
+                      "10.1.116.199": {
+                        "index": 121,
+                        "text": "O-10F-CD.2"
+                      },
+                      "10.1.116.204": {
+                        "index": 122,
+                        "text": "O-11F-CD.1"
+                      },
+                      "10.1.116.202": {
+                        "index": 123,
+                        "text": "O-10F-CD.5"
+                      },
+                      "10.1.116.91": {
+                        "index": 124,
+                        "text": "O-1F-CD.17"
+                      },
+                      "10.1.116.218": {
+                        "index": 125,
+                        "text": "O-13F-CD.3"
+                      },
+                      "10.1.116.198": {
+                        "index": 126,
+                        "text": "O-10F-CD.1"
+                      },
+                      "10.1.116.206": {
+                        "index": 127,
+                        "text": "O-11F-CD.3"
+                      },
+                      "10.1.116.85": {
+                        "index": 128,
+                        "text": "O-1F-CD.11"
+                      },
+                      "10.1.116.89": {
+                        "index": 129,
+                        "text": "O-1F-CD.15"
+                      },
+                      "10.1.116.215": {
+                        "index": 130,
+                        "text": "O-12F-CD.6"
+                      },
+                      "10.1.116.188": {
+                        "index": 131,
+                        "text": "O-8F-CD.3"
+                      },
+                      "10.1.116.176": {
+                        "index": 132,
+                        "text": "O-6F-CD.3"
+                      },
+                      "10.1.116.205": {
+                        "index": 133,
+                        "text": "O-11F-CD.2"
+                      },
+                      "10.1.116.212": {
+                        "index": 134,
+                        "text": "O-12F-CD.3"
+                      },
+                      "10.1.116.90": {
+                        "index": 135,
+                        "text": "O-1F-CD.16"
+                      },
+                      "10.1.116.241": {
+                        "index": 136,
+                        "text": "O-17F-CD.3"
+                      },
+                      "10.1.116.141": {
+                        "index": 137,
+                        "text": "O-3F-CD.5"
+                      },
+                      "10.1.116.170": {
+                        "index": 138,
+                        "text": "O-5F-CD.3"
+                      },
+                      "10.1.116.182": {
+                        "index": 139,
+                        "text": "O-7F-CD-3"
+                      },
+                      "10.1.116.213": {
+                        "index": 140,
+                        "text": "O-12F-CD.4"
+                      },
+                      "10.1.116.183": {
+                        "index": 141,
+                        "text": "O-8F-CD.4"
+                      },
+                      "10.1.116.224": {
+                        "index": 142,
+                        "text": "O-14F-CD.3"
+                      },
+                      "10.1.116.207": {
+                        "index": 143,
+                        "text": "O-11F-CD.4"
+                      },
+                      "10.1.116.126": {
+                        "index": 144,
+                        "text": "O-2F-CD.7"
+                      },
+                      "10.1.117.226": {
+                        "index": 145,
+                        "text": "H-B2-EC.9"
+                      },
+                      "10.1.116.74": {
+                        "index": 146,
+                        "text": "O-B1-EC.16"
+                      },
+                      "10.1.116.139": {
+                        "index": 147,
+                        "text": "O-3F-CD.1"
+                      },
+                      "10.1.116.253": {
+                        "index": 148,
+                        "text": "O-19F-CD.3"
+                      },
+                      "10.1.117.229": {
+                        "index": 149,
+                        "text": "H-B2-EC.12"
+                      },
+                      "10.1.117.223": {
+                        "index": 150,
+                        "text": "H-B2-EC.4"
+                      },
+                      "10.1.117.7": {
+                        "index": 151,
+                        "text": "O-20F-CD.3"
+                      },
+                      "10.1.116.121": {
+                        "index": 152,
+                        "text": "O-2F-CD.2"
+                      },
+                      "10.1.117.220": {
+                        "index": 153,
+                        "text": "H-B2-EC.1"
+                      },
+                      "10.1.116.217": {
+                        "index": 154,
+                        "text": "O-13F-CD.2"
+                      },
+                      "10.1.116.216": {
+                        "index": 155,
+                        "text": "O-13F-CD.1"
+                      },
+                      "10.1.117.221": {
+                        "index": 156,
+                        "text": "H-B2-EC.2"
+                      },
+                      "10.1.116.228": {
+                        "index": 157,
+                        "text": "O-15F-CD.2"
+                      },
+                      "10.1.116.247": {
+                        "index": 158,
+                        "text": "O-18F-CD.3"
+                      },
+                      "10.1.116.127": {
+                        "index": 159,
+                        "text": "O-2F-CD.8"
+                      },
+                      "10.1.116.146": {
+                        "index": 160,
+                        "text": "O-3F-CD.8"
+                      },
+                      "10.1.117.19": {
+                        "index": 161,
+                        "text": "O-22F-CD.3"
+                      },
+                      "10.1.116.124": {
+                        "index": 162,
+                        "text": "O-2F-CD.5"
+                      },
+                      "10.1.117.6": {
+                        "index": 163,
+                        "text": "O-20F-CD.2"
+                      },
+                      "10.1.117.37": {
+                        "index": 164,
+                        "text": "O-25F-CD.3"
+                      },
+                      "10.1.116.125": {
+                        "index": 165,
+                        "text": "O-11F-CD.7"
+                      },
+                      "10.1.116.144": {
+                        "index": 166,
+                        "text": "O-3F-CD.6"
+                      },
+                      "10.1.116.51": {
+                        "index": 167,
+                        "text": "O-B1-CD.3"
+                      },
+                      "10.1.116.227": {
+                        "index": 168,
+                        "text": "O-15F-CD.1"
+                      },
+                      "10.1.117.5": {
+                        "index": 169,
+                        "text": "O-20F-CD.1"
+                      },
+                      "10.1.117.38": {
+                        "index": 170,
+                        "text": "O-25F-CD.4"
+                      },
+                      "10.1.116.120": {
+                        "index": 171,
+                        "text": "O-2F-CD.1"
+                      },
+                      "10.1.116.59": {
+                        "index": 172,
+                        "text": "O-B1-CD.11"
+                      },
+                      "10.1.117.13": {
+                        "index": 173,
+                        "text": "O-21F-CD.3"
+                      },
+                      "10.1.116.145": {
+                        "index": 174,
+                        "text": "O-3F-CD.7"
+                      },
+                      "10.1.116.140": {
+                        "index": 175,
+                        "text": "O-3F-CD.2"
+                      },
+                      "10.1.117.227": {
+                        "index": 176,
+                        "text": "H-B2-EC.10"
+                      },
+                      "10.1.117.228": {
+                        "index": 177,
+                        "text": "H-B2-EC.11"
+                      },
+                      "10.1.117.225": {
+                        "index": 178,
+                        "text": "H-B2-EC.7"
+                      },
+                      "10.1.116.56": {
+                        "index": 179,
+                        "text": "O-B1-CD.8"
+                      },
+                      "10.1.116.110": {
+                        "index": 180,
+                        "text": "O-1F-EC.4"
+                      },
+                      "10.1.116.65": {
+                        "index": 181,
+                        "text": "O-B1-EC.7"
+                      },
+                      "10.1.117.67": {
+                        "index": 182,
+                        "text": "RT-1-2"
+                      },
+                      "10.1.117.30": {
+                        "index": 183,
+                        "text": "O-24F-CD.2"
+                      },
+                      "10.1.116.67": {
+                        "index": 184,
+                        "text": "O-B1-EC.9"
+                      },
+                      "10.1.116.69": {
+                        "index": 185,
+                        "text": "O-B1-EC.11"
+                      },
+                      "10.1.117.68": {
+                        "index": 186,
+                        "text": "OL-30Floor_A30T08"
+                      },
+                      "10.1.116.251": {
+                        "index": 187,
+                        "text": "O-19F-CD.1"
+                      },
+                      "10.1.116.47": {
+                        "index": 188,
+                        "text": "O-B2-EC.11"
+                      },
+                      "10.1.116.46": {
+                        "index": 189,
+                        "text": "O-B2-EC.10"
+                      },
+                      "10.1.117.29": {
+                        "index": 190,
+                        "text": "O-24F-CD.1"
+                      },
+                      "10.1.117.46": {
+                        "index": 191,
+                        "text": "O-B1-CD.12.1"
+                      },
+                      "10.1.116.113": {
+                        "index": 192,
+                        "text": "O-1F-EC.7"
+                      },
+                      "10.1.116.252": {
+                        "index": 193,
+                        "text": "O-19F-CD.2"
+                      },
+                      "10.1.116.45": {
+                        "index": 194,
+                        "text": "O-B2-EC.9"
+                      },
+                      "10.1.116.68": {
+                        "index": 195,
+                        "text": "O-B1-EC.10"
+                      },
+                      "10.1.116.111": {
+                        "index": 196,
+                        "text": "O-1F-EC.5"
+                      },
+                      "10.1.116.66": {
+                        "index": 197,
+                        "text": "O-B1-EC.8"
+                      },
+                      "10.1.116.44": {
+                        "index": 198,
+                        "text": "O-B2-EC.8"
+                      },
+                      "10.1.117.35": {
+                        "index": 199,
+                        "text": "O-25F-CD.1"
+                      },
+                      "10.1.117.3": {
+                        "index": 200,
+                        "text": "P-4F.R-EC.5-8"
+                      },
+                      "10.1.117.36": {
+                        "index": 201,
+                        "text": "O-25F-CD.2"
+                      },
+                      "10.1.116.42": {
+                        "index": 202,
+                        "text": "O-B2-EC.6"
+                      },
+                      "10.1.117.79": {
+                        "index": 203,
+                        "text": "O-27F-CD.3"
+                      },
+                      "10.1.116.52": {
+                        "index": 204,
+                        "text": "O-B1-CD.4"
+                      },
+                      "10.1.116.230": {
+                        "index": 205,
+                        "text": "O-15F-CD.4"
+                      },
+                      "10.1.116.236": {
+                        "index": 206,
+                        "text": "O-16F-CD.4"
+                      },
+                      "10.1.116.237": {
+                        "index": 207,
+                        "text": "O-16F-CD.5"
+                      },
+                      "10.1.116.234": {
+                        "index": 208,
+                        "text": "O-16F-CD.2"
+                      },
+                      "10.1.117.90": {
+                        "index": 209,
+                        "text": "O-23F-CD-9"
+                      },
+                      "10.1.116.107": {
+                        "index": 210,
+                        "text": "O-1F-EC.1"
+                      },
+                      "10.1.116.245": {
+                        "index": 211,
+                        "text": "O-18F-CD.1"
+                      },
+                      "10.1.116.239": {
+                        "index": 212,
+                        "text": "O-17F-CD.1"
+                      },
+                      "10.1.117.50": {
+                        "index": 213,
+                        "text": "O-27F-CD.4"
+                      },
+                      "10.1.116.238": {
+                        "index": 214,
+                        "text": "O-16F-CD.6"
+                      },
+                      "10.1.117.93": {
+                        "index": 215,
+                        "text": "O-23F-CD-12"
+                      },
+                      "10.1.116.33": {
+                        "index": 216,
+                        "text": "O-B2-CD.4"
+                      },
+                      "10.1.116.246": {
+                        "index": 217,
+                        "text": "O-18F-CD.2"
+                      },
+                      "10.1.116.242": {
+                        "index": 218,
+                        "text": "O-17F-CD.4"
+                      },
+                      "10.1.116.233": {
+                        "index": 219,
+                        "text": "O-16F-CD.1"
+                      },
+                      "10.1.117.91": {
+                        "index": 220,
+                        "text": "O-23F-CD-10"
+                      },
+                      "10.1.117.25": {
+                        "index": 221,
+                        "text": "O-23F-CD.3"
+                      },
+                      "10.1.117.31": {
+                        "index": 222,
+                        "text": "O-24F-CD.3"
+                      },
+                      "10.1.116.248": {
+                        "index": 223,
+                        "text": "O-18F-CD.4"
+                      },
+                      "10.1.117.51": {
+                        "index": 224,
+                        "text": "O-27F-CD.5"
+                      },
+                      "10.1.117.45": {
+                        "index": 225,
+                        "text": "O-8F-CD.5"
+                      },
+                      "10.1.116.235": {
+                        "index": 226,
+                        "text": "O-16F-CD.3"
+                      },
+                      "10.1.116.232": {
+                        "index": 227,
+                        "text": "O-15F-CD.6"
+                      },
+                      "10.1.116.108": {
+                        "index": 228,
+                        "text": "O-1F-EC.2"
+                      },
+                      "10.1.116.75": {
+                        "index": 229,
+                        "text": "O-1F-CD.1"
+                      },
+                      "10.1.116.225": {
+                        "index": 230,
+                        "text": "O-14F-CD.4"
+                      },
+                      "10.1.116.231": {
+                        "index": 231,
+                        "text": "O-15F-CD.5"
+                      },
+                      "10.1.116.240": {
+                        "index": 232,
+                        "text": "O-17F-CD.2"
+                      },
+                      "10.1.117.41": {
+                        "index": 233,
+                        "text": "O-26F-CD.1"
+                      },
+                      "10.1.116.64": {
+                        "index": 234,
+                        "text": "O-B1-EC.6"
+                      },
+                      "10.1.116.164": {
+                        "index": 235,
+                        "text": "O-4F-FC.2"
+                      },
+                      "10.1.116.105": {
+                        "index": 236,
+                        "text": "O-1F-EC.20"
+                      },
+                      "10.1.116.31": {
+                        "index": 237,
+                        "text": "O-B2-CD.2"
+                      },
+                      "10.1.117.99": {
+                        "index": 238,
+                        "text": "O-24F-CD11"
+                      },
+                      "10.1.116.166": {
+                        "index": 239,
+                        "text": "O-4F-FC.4"
+                      },
+                      "10.1.116.63": {
+                        "index": 240,
+                        "text": "O-B1-EC.5"
+                      },
+                      "10.1.116.167": {
+                        "index": 241,
+                        "text": "O-4F-FC.5"
+                      },
+                      "10.1.117.216": {
+                        "index": 242,
+                        "text": "O-B2-CD.9"
+                      },
+                      "10.1.116.163": {
+                        "index": 243,
+                        "text": "O-4F-FC.1"
+                      },
+                      "10.1.117.211": {
+                        "index": 244,
+                        "text": "H-1F-EC.9"
+                      },
+                      "10.1.117.72": {
+                        "index": 245,
+                        "text": "O-21F-CD.9"
+                      },
+                      "10.1.117.208": {
+                        "index": 246,
+                        "text": "O-11F-CD.13"
+                      },
+                      "10.1.117.70": {
+                        "index": 247,
+                        "text": "O-21F-CD.7"
+                      },
+                      "10.1.117.215": {
+                        "index": 248,
+                        "text": "O-B2-CD.8"
+                      },
+                      "10.1.117.48": {
+                        "index": 249,
+                        "text": "O-27F-CD.2"
+                      },
+                      "10.1.116.104": {
+                        "index": 250,
+                        "text": "H-B1-EC.4"
+                      },
+                      "10.1.116.48": {
+                        "index": 251,
+                        "text": "O-B2-EC.12"
+                      },
+                      "10.1.116.55": {
+                        "index": 252,
+                        "text": "O-B1-CD.7"
+                      },
+                      "10.1.117.209": {
+                        "index": 253,
+                        "text": "O-23F-CD.13"
+                      },
+                      "10.1.117.100": {
+                        "index": 254,
+                        "text": "O-24F-CD12"
+                      },
+                      "10.1.117.47": {
+                        "index": 255,
+                        "text": "O-27F-CD.1"
+                      },
+                      "10.1.116.53": {
+                        "index": 256,
+                        "text": "O-B1-CD.5"
+                      },
+                      "10.1.117.97": {
+                        "index": 257,
+                        "text": "0-B2-EC.13"
+                      },
+                      "10.1.117.63": {
+                        "index": 258,
+                        "text": "O-30F-CD.2"
+                      },
+                      "10.1.117.98": {
+                        "index": 259,
+                        "text": "O-24F-CD10"
+                      },
+                      "10.1.116.129": {
+                        "index": 260,
+                        "text": "O-2F-CD.10"
+                      },
+                      "10.1.117.206": {
+                        "index": 261,
+                        "text": "O-B2-SH"
+                      },
+                      "10.1.117.204": {
+                        "index": 262,
+                        "text": "O-24F-CD14"
+                      },
+                      "10.1.117.214": {
+                        "index": 263,
+                        "text": "O-22F-CD.7"
+                      },
+                      "10.1.117.203": {
+                        "index": 264,
+                        "text": "O-24F-CD13"
+                      },
+                      "10.1.116.62": {
+                        "index": 265,
+                        "text": "O-B1-EC.4"
+                      },
+                      "10.1.117.62": {
+                        "index": 266,
+                        "text": "O-30F-CD.1"
+                      },
+                      "10.1.117.71": {
+                        "index": 267,
+                        "text": "O-21F-CD.8"
+                      },
+                      "10.1.116.201": {
+                        "index": 268,
+                        "text": "O-10F-CD.4"
+                      },
+                      "10.1.116.49": {
+                        "index": 269,
+                        "text": "O-B1-CD.1"
+                      },
+                      "10.1.116.165": {
+                        "index": 270,
+                        "text": "O-4F-FC.3"
+                      },
+                      "10.1.117.42": {
+                        "index": 271,
+                        "text": "O-26F-CD.2"
+                      },
+                      "10.1.117.213": {
+                        "index": 272,
+                        "text": "O-21F-CD.10"
+                      },
+                      "10.1.116.50": {
+                        "index": 273,
+                        "text": "O-B1-CD.2"
+                      },
+                      "10.1.117.205": {
+                        "index": 274,
+                        "text": "O-6F-CD10"
+                      },
+                      "10.1.117.210": {
+                        "index": 275,
+                        "text": "O-21F-CD.13"
+                      },
+                      "10.1.117.87": {
+                        "index": 276,
+                        "text": "O-B1-EC.17"
+                      },
+
+                      "10.1.117.102": {
+                        "index": 277,
+                        "text": "ACU-P-1F-2"
+                      },
+                      "10.1.117.103": {
+                        "index": 278,
+                        "text": "ACU-O-27F-1"
+                      },
+                      "10.1.117.104": {
+                        "index": 279,
+                        "text": "ACU-O-27F-2"
+                      },
+                      "10.1.117.105": {
+                        "index": 280,
+                        "text": "ACU-O-25F-1"
+                      },
+                      "10.1.117.106": {
+                        "index": 281,
+                        "text": "ACU-O-22F-1"
+                      },
+                      "10.1.117.107": {
+                        "index": 282,
+                        "text": "ACU-O-22F-2"
+                      },
+                      "10.1.117.108": {
+                        "index": 283,
+                        "text": "ACU-O-18F-1"
+                      },
+                      "10.1.117.109": {
+                        "index": 284,
+                        "text": "ACU-O-18F-2"
+                      },
+                      "10.1.117.110": {
+                        "index": 285,
+                        "text": "ACU-O-14F-1"
+                      },
+                      "10.1.117.111": {
+                        "index": 286,
+                        "text": "ACU-O-14F-2"
+                      },
+                      "10.1.117.112": {
+                        "index": 287,
+                        "text": "ACU-O-14F-3"
+                      },
+                      "10.1.117.113": {
+                        "index": 288,
+                        "text": "ACU-O-9F-1"
+                      },
+                      "10.1.117.114": {
+                        "index": 289,
+                        "text": "ACU-O-9F-2"
+                      },
+                      "10.1.117.115": {
+                        "index": 290,
+                        "text": "ACU-O-6F-1"
+                      },
+                      "10.1.117.116": {
+                        "index": 291,
+                        "text": "ACU-O-6F-2"
+                      },
+                      "10.1.117.117": {
+                        "index": 292,
+                        "text": "ACU-O-3F-1"
+                      },
+                      "10.1.117.118": {
+                        "index": 293,
+                        "text": "ACU-O-B2-6"
+                      },
+                      "10.1.117.119": {
+                        "index": 294,
+                        "text": "ACU-O-B1-1"
+                      },
+                      "10.1.117.120": {
+                        "index": 295,
+                        "text": "ACU-O-B1-2"
+                      },
+                      "10.1.117.121": {
+                        "index": 296,
+                        "text": "ACU-O-B1-3"
+                      },
+                      "10.1.117.122": {
+                        "index": 297,
+                        "text": "ACU-O-B1-4"
+                      },
+                      "10.1.117.123": {
+                        "index": 298,
+                        "text": "ACU-O-B1-5"
+                      },
+                      "10.1.117.124": {
+                        "index": 299,
+                        "text": "ACU-O-B1-6"
+                      },
+                      "10.1.117.125": {
+                        "index": 300,
+                        "text": "ACU-P-1F-3"
+                      },
+                      "10.1.117.126": {
+                        "index": 301,
+                        "text": "ACU-O-B2-2"
+                      },
+                      "10.1.117.127": {
+                        "index": 302,
+                        "text": "ACU-O-B2-3"
+                      },
+                      "10.1.117.128": {
+                        "index": 303,
+                        "text": "ACU-O-30F-3"
+                      },
+                      "10.1.117.129": {
+                        "index": 304,
+                        "text": "ACU-O-B2-5"
+                      },
+                      "10.1.117.130": {
+                        "index": 305,
+                        "text": "ACU-O-B2-7"
+                      },
+                      "10.1.117.131": {
+                        "index": 306,
+                        "text": "ACU-P-1F-1"
+                      },
+                      "10.1.117.132": {
+                        "index": 307,
+                        "text": "ACU-P-1F-4"
+                      },
+                      "10.1.117.133": {
+                        "index": 308,
+                        "text": "ACU-O-1F-1"
+                      },
+                      "10.1.117.134": {
+                        "index": 309,
+                        "text": "ACU-O-1F-2"
+                      },
+                      "10.1.117.135": {
+                        "index": 310,
+                        "text": "ACU-O-1F-3"
+                      },
+                      "10.1.117.136": {
+                        "index": 311,
+                        "text": "ACU-O-4F-2"
+                      },
+                      "10.1.117.137": {
+                        "index": 312,
+                        "text": "ACU-O-2F-2"
+                      },
+                      "10.1.117.138": {
+                        "index": 313,
+                        "text": "ACU-P-2F-1"
+                      },
+                      "10.1.117.140": {
+                        "index": 314,
+                        "text": "ACU-P-3F-1"
+                      },
+                      "10.1.117.141": {
+                        "index": 315,
+                        "text": "ACU-P-3F-2"
+                      },
+                      "10.1.117.142": {
+                        "index": 316,
+                        "text": "ACU-O-4F-1"
+                      },
+                      "10.1.117.143": {
+                        "index": 317,
+                        "text": "ACU-O-22F-3"
+                      },
+                      "10.1.117.144": {
+                        "index": 318,
+                        "text": "ACU-O-6F-3"
+                      },
+                      "10.1.117.145": {
+                        "index": 319,
+                        "text": "ACU-O-9F-3"
+                      },
+                      "10.1.117.146": {
+                        "index": 320,
+                        "text": "ACU-O-18F-3"
+                      },
+                      "10.1.117.147": {
+                        "index": 321,
+                        "text": "ACU-O-30F-1"
+                      },
+                      "10.1.117.148": {
+                        "index": 322,
+                        "text": "ACU-O-30F-2"
+                      },
+                      "10.1.117.149": {
+                        "index": 323,
+                        "text": "ACU-O-13F-1"
+                      },
+                      "10.1.117.151": {
+                        "index": 324,
+                        "text": "ACU-P-1F-5"
+                      },
+                      "10.1.117.152": {
+                        "index": 325,
+                        "text": "ACU-P-3F-3"
+                      },
+                      "10.1.117.153": {
+                        "index": 326,
+                        "text": "ACU-O--14AIFC"
+                      },
+                      "10.1.117.154": {
+                        "index": 327,
+                        "text": "ACU-O-20F-BCC"
+                      },
+                      "10.1.117.160": {
+                        "index": 328,
+                        "text": "ACU-O-10F-APM"
+                      },
+                      "10.1.117.161": {
+                        "index": 329,
+                        "text": "ACU-O-7F-1"
+                      },
+                      "10.1.117.162": {
+                        "index": 330,
+                        "text": "ACU-O-7F-2"
+                      },
+                      "10.1.117.163": {
+                        "index": 331,
+                        "text": "ACU-O-7F-3"
+                      },
+                      "10.1.117.164": {
+                        "index": 332,
+                        "text": "ACU-O-7F-4"
+                      },
+                      "10.1.117.167": {
+                        "index": 333,
+                        "text": "ACU-O-12F-3"
+                      },
+                      "10.1.117.169": {
+                        "index": 334,
+                        "text": "ACU-O-16F-1"
+                      },
+                      "10.1.117.173": {
+                        "index": 335,
+                        "text": "ACU-O-6F-01"
+                      },
+                      "10.1.117.174": {
+                        "index": 336,
+                        "text": "ACU-O-6F-02"
+                      },
+                      "10.1.117.175": {
+                        "index": 337,
+                        "text": "ACU-O-6F-03"
+                      },
+                      "10.1.117.176": {
+                        "index": 338,
+                        "text": "ACU-O-6F-04"
+                      },
+                      "10.1.117.177": {
+                        "index": 339,
+                        "text": "ACU-O-6F-05"
+                      },
+                      "10.1.117.178": {
+                        "index": 340,
+                        "text": "ACU-O-6F-06"
+                      },
+                      "10.1.117.179": {
+                        "index": 341,
+                        "text": "ACU-O-6F-07"
+                      },
+                      "10.1.117.180": {
+                        "index": 342,
+                        "text": "ACU-O-6F-08"
+                      },
+                      "10.1.117.181": {
+                        "index": 343,
+                        "text": "ACU-O-15F-01"
+                      },
+                      "10.1.117.186": {
+                        "index": 344,
+                        "text": "ACU-O-15F-06"
+                      },
+                      "10.1.117.187": {
+                        "index": 345,
+                        "text": "ACU-O-15F-07"
+                      },
+                      "10.1.117.188": {
+                        "index": 346,
+                        "text": "ACU-O-15F-08"
+                      },
+                      "10.1.117.189": {
+                        "index": 347,
+                        "text": "ACU-O-22F-01"
+                      },
+                      "10.1.117.190": {
+                        "index": 348,
+                        "text": "ACU-O-22F-02"
+                      },
+                      "10.1.117.191": {
+                        "index": 349,
+                        "text": "ACU-O-22F-03"
+                      },
+                      "10.1.117.196": {
+                        "index": 350,
+                        "text": "ACU-O-22F-EBRD"
+                      },
+                      "10.1.117.197": {
+                        "index": 351,
+                        "text": "ACU-O-8F-1"
+                      },
+                      "10.1.117.198": {
+                        "index": 352,
+                        "text": "ACU-O-29F-APM"
+                      },
+                      "10.1.117.199": {
+                        "index": 353,
+                        "text": "ACU-20F-CDB"
+                      },
+                      "10.1.117.201": {
+                        "index": 354,
+                        "text": "ACU-O-8F-2"
+                      },
+                      "10.1.117.202": {
+                        "index": 355,
+                        "text": "ACU-O-30FKONE1"
+                      },
+                      "10.1.117.207": {
+                        "index": 356,
+                        "text": "AMC-0221C8"
+                      }                      
+
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Instance"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Name"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "builder",
+          "expr": "sum(label_replace(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\",target=~\"$target\",ip_version=~\"$ip_version\",ip_version=\"4\"}, \"ipv4\", \"$1\", \"ip\", \"(.*)\")) by (instance,target,ipv4)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "B",
+          "step": 2
+        }
+      ],
+      "title": "Ping Success",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 23,
+      "panels": [],
+      "repeat": "instance",
+      "title": "Instance $instance",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "uid": "$Datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": -1,
+            "barWidthFactor": 0.5,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "max": 1.5,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 3,
+      "maxPerRow": 2,
+      "options": {
+        "alertThreshold": true,
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "repeat": "target",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "avg(ping_rtt_best_seconds{job=~\"$job\",instance=~\"$instance\",target=~\"$target\",ip_version=~\"$ip_version\"}) by (ip_version)",
+          "format": "time_series",
+          "hide": true,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "IPv{{ip_version}} best",
+          "metric": "probe_",
+          "refId": "A",
+          "step": 2
+        },
+        {
+          "datasource": {
+            "uid": "$Datasource"
+          },
+          "expr": "avg(ping_rtt_mean_seconds{job=~\"$job\",instance=~\"$instance\",target=~\"$target\",ip_version=~\"$ip_version\"}) by (ip_version)",
+          "format": "time_series",
+          "hide": true,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "IPv{{ip_version}} mean",
+          "metric": "probe_",
+          "refId": "B",
+          "step": 2
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "avg(ping_rtt_worst_seconds{job=~\"$job\",instance=~\"$instance\",target=~\"$target\",ip_version=~\"$ip_version\"}) by (ip_version)",
+          "format": "time_series",
+          "hide": true,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "IPv{{ip_version}} worst",
+          "metric": "probe_",
+          "refId": "C",
+          "step": 2
+        },
+        {
+          "datasource": {
+            "uid": "$Datasource"
+          },
+          "expr": "avg(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\",target=~\"$target\",ip_version=~\"$ip_version\"}) by (ip_version)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "IPv{{ip_version}} loss",
+          "refId": "D"
+        }
+      ],
+      "title": "Target $target",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "includeAll": false,
+        "name": "Datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(ping_loss_ratio,job)",
+        "includeAll": true,
+        "label": "Job",
+        "multi": true,
+        "name": "job",
+        "options": [],
+        "query": {
+          "query": "label_values(ping_loss_ratio,job)",
+          "refId": "PromShort-job-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "$Datasource"
+        },
+        "definition": "label_values(ping_loss_ratio{job=~\"$job\"},instance)",
+        "includeAll": true,
+        "label": "Instance",
+        "multi": true,
+        "name": "instance",
+        "options": [],
+        "query": {
+          "query": "label_values(ping_loss_ratio{job=~\"$job\"},instance)",
+          "refId": "PromShort-instance-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\"},target)",
+        "includeAll": true,
+        "label": "Target",
+        "multi": true,
+        "name": "target",
+        "options": [],
+        "query": {
+          "query": "label_values(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\"},target)",
+          "refId": "PromShort-target-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "$Datasource"
+        },
+        "definition": "label_values(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\"},ip_version)",
+        "includeAll": true,
+        "label": "IP Version",
+        "multi": true,
+        "name": "ip_version",
+        "options": [],
+        "query": {
+          "query": "label_values(ping_loss_ratio{job=~\"$job\",instance=~\"$instance\"},ip_version)",
+          "refId": "PromShort-ip_version-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Ping Exporter LPM",
+  "uid": "b6c735ca-4f1f-40fa-a596-658597af119d",
+  "version": 6,
+  "weekStart": ""
+}

@@ -1,0 +1,11 @@
+route:
+  receiver: 'email-notifications'
+  
+receivers:
+- name: 'email-notifications'
+  email_configs:
+  - to: 'serik.beissov@lynkspm.com'
+    from: 'alertmanager@yourdomain.com'
+    smarthost: 'smtp.mail.ru:465'
+    auth_username: 'alert@ttexecutivehub.kz'
+    auth_password: '2Jscr20xkoYgfyW5Q40A'

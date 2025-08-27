@@ -1,0 +1,27 @@
+apiVersion: 1
+
+datasources:
+
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: false
+    editable: true
+    jsonData:
+      httpMethod: POST
+      timeInterval: "5s" # default query interval
+
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    isDefault: true
+    editable: true
+    jsonData:
+      maxLines: 1000
+      derivedFields:
+        - name: Log Labels
+          url: https://grafana.com/docs/grafana/latest/datasources/loki/log-labels/
+          datasourceUid: ${DS_LOKI}
+          icon: "https://grafana.com/static/img/icons/datasources/loki.svg"

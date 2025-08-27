@@ -1,0 +1,94 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=30d'
+    depends_on:
+      - ping-exporter
+    network_mode: host
+
+  # Ping Exporter (czerwonk) с поддержкой ICMP
+  
+  ping-exporter:
+    image: czerwonk/ping_exporter
+    container_name: ping-exporter
+    ports:
+      - "9427:9427"
+    volumes:
+      - ./ping-targets.yml:/config/config.yml  # Конфиг целей для пинга
+    cap_add:  # Требуются права для RAW-сокетов
+      - NET_RAW
+    security_opt:
+      - apparmor:unconfined
+    mem_limit: 128M
+    restart: unless-stopped
+    network_mode: host
+    
+
+  # Grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./camera-mapping.csv:/usr/share/grafana/public/camera-mapping.csv
+      - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - grafana-storage:/var/lib/grafana
+    # environment:
+    #   - GF_PLUGINS_PREINSTALL=marcusolsson-csv-datasource
+    #   - GF_PLUGIN_ALLOW_LOCAL_MODE=true
+    #   - GF_DATASOURCE_ALLOW_LOCAL_MODE=true  # Ключевая настройка!
+    depends_on:
+      - prometheus
+    network_mode: host
+
+  # Alertmanager
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    network_mode: host
+
+  # Loki and Promtail for logging
+  loki:
+    image: grafana/loki
+    container_name: loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yml:/etc/loki/local-config.yml
+      - ./loki-data/chunks:/tmp/loki/chunks
+      - ./loki-data/rules:/tmp/loki/rules
+      - ./loki-data/compactor:/tmp/loki/compactor
+      - ./loki-data/boltdb-shipper-cache:/tmp/loki/boltdb-shipper-cache
+      - ./loki-data/boltdb-shipper-active:/tmp/loki/boltdb-shipper-active
+      - ./loki-data/wal:/tmp/loki/wal
+    command: -config.file=/etc/loki/local-config.yml
+    network_mode: host
+  
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - ./promtail-config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    network_mode: host
+    depends_on:
+      - loki
+
+volumes:
+  grafana-storage:
+  prometheus-data:
