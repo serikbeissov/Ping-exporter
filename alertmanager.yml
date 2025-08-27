@@ -8,4 +8,4 @@ receivers:
     from: 'alertmanager@yourdomain.com'
     smarthost: 'smtp.mail.ru:465'
     auth_username: 'alert@ttexecutivehub.kz'
-    auth_password: '2Jscr20xkoYgfyW5Q40A'
+    auth_password: 'YOURPASSWORD'
